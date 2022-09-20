@@ -13,7 +13,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('the_worlds_greatest_quiz')
 
 bank = SHEET.worksheet('bank')
-login = SHEET.worksheet('login')
+
 
 print("Welcome to the worlds greatest quiz")
 print("Instructions\n First login or register\n To play the game type true or false on each question\n The highest score is 100 points\n Each time you play there will be new questions!\n No cheating ;)")
@@ -21,23 +21,33 @@ print("Instructions\n First login or register\n To play the game type true or fa
 def login_register():
     inital_question = input("Do you have an account? y/n: ")
     if inital_question == "n":
+        print(f"Redirection to Registration...")
+        print(f"...")
+        print(f"...")
         while True:
             username = input("Enter Username: ")
             password = input("Enter Password: ")
-            confirm_password = input("confirm Password: ")
+            confirm_password = input("Confirm Password: ")
+            print(f"Creating Account for {username}...")
             if password == confirm_password:
-                login.append_row(username)
-                login.append_row(password)
+                
+                update_worksheet = []
+                login = SHEET.worksheet('login')
+                update_worksheet.append(username)
+                update_worksheet.append(password)
+                login.append_row(update_worksheet)
+                print(f"Account created Successfully!")
                 inital_question ="y"
                 break
             
             print("Passwords do not match!")
     
     if inital_question == "y":
+        print(f"Please login")
         while True:
-            login_username = input("username: ")
-            login_password = input("password: ")
-            print("welcome back!")
+            login_username = input("Username: ")
+            login_password = input("Password: ")
+            print("Welcome {Username}")
             break
             
 
@@ -53,8 +63,3 @@ def main():
 
 
 main()
-
-        
-        
-
-
