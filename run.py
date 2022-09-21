@@ -19,6 +19,8 @@ login = SHEET.worksheet('login')
 print("Welcome to the worlds greatest quiz")
 print("Instructions\n First login or register\n To play the game type true or false on each question\n The highest score is 100 points\n Each time you play there will be new questions!\n No cheating ;)")
 
+
+
 def login_register():
     inital_question = input("Do you have an account? y/n: ")
     if inital_question == "n":
@@ -49,15 +51,22 @@ def login_register():
         for i in range(len(username_list)):
             if username_list[i] == login_username:
                 login_password = input('Password: ')
-            else:
-                print("username not found")
                 if password_list[i] == login_password:
                     print('Success')
+                    break
                 else:
-                    print('fail')
+                    print("fail")
+                    login_register()
+            elif i == len(username_list[-1]):
+                print("Username not found")
+                login_register()
 
+               
+                
+                
         
 
+        
 
 
     
