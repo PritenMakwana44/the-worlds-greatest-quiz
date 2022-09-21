@@ -30,3 +30,10 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 -----
 Happy coding!
 
+
+structure of login_register function:
+https://python-forum.io/thread-6106.html
+append to row:
+https://docs.gspread.org/en/latest/
+help with while loop:
+https://www.toolsqa.com/python/python-while-loop/
