@@ -57,7 +57,7 @@ def login_register():
                 else:
                     print("fail")
                     login_register()
-            elif i == len(username_list[-1]):
+            elif i == len(username_list)-1:
                 print("Username not found")
                 login_register()
 
