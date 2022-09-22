@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import random
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -55,14 +56,24 @@ def login_register():
                     print('Success')
                     break
                 else:
-                    print("fail")
+                    print("Password Incorrect")
                     login_register()
             elif i == len(username_list)-1:
                 print("Username not found")
                 login_register()
 
                
-                
+def random_question_gen():
+    question_col = bank.col_values(1)
+    question = random.choice(question_col)
+    
+    if question == "question":
+        random_question_gen()
+        
+    else:
+        print(question)
+    
+
                 
         
 
@@ -73,7 +84,9 @@ def login_register():
 
 
 def main():
-    login_register()
+    #login_register()
+    random_question_gen()
+
 
 
 main()

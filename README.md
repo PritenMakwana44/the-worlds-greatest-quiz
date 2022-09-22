@@ -37,3 +37,6 @@ append to row:
 https://docs.gspread.org/en/latest/
 help with while loop:
 https://www.toolsqa.com/python/python-while-loop/
+
+help with line 60 bug:
+https://www.howtouselinux.com/post/get-last-element-of-a-list-in-python#:~:text=The%20best%20way%20to%20get,gets%20the%20second%20to%20last.
