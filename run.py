@@ -63,18 +63,29 @@ def login_register():
                 login_register()
 
                
-def random_question_gen():
+def question_answer():
     question_col = bank.col_values(1)
+    answer_col = bank.col_values(2)
     question = random.choice(question_col)
     
     if question == "question":
-        random_question_gen()
+        question_answer()
         
     else:
         print(question)
-    
 
-                
+    for count in range(1, 11):
+        answer_input = input('Enter True or False: ')
+        for i in range(len(question_col)):
+            if question_col[i] == question:
+                if answer_col[i] == answer_input.upper():
+                    print("correct")
+                    print(count)
+                    break
+                else:
+                    print("Incorrect")
+                    print(count)
+                    break
         
 
         
@@ -84,8 +95,8 @@ def random_question_gen():
 
 
 def main():
-    #login_register()
-    random_question_gen()
+    ##login_register()
+    question_answer()
 
 
 
