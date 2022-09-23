@@ -66,15 +66,18 @@ def login_register():
 def question_answer():
     question_col = bank.col_values(1)
     answer_col = bank.col_values(2)
-    question = random.choice(question_col)
     
-    if question == "question":
-        question_answer()
-        
-    else:
-        print(question)
 
-    for count in range(1, 11):
+    for count in range(10):
+        question = random.choice(question_col)
+        
+        if question == "question":
+            question_answer()
+        
+        else:
+            print(question)
+
+    
         answer_input = input('Enter True or False: ')
         for i in range(len(question_col)):
             if question_col[i] == question:
