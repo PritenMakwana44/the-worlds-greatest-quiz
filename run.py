@@ -76,15 +76,12 @@ def create_new_user():
             print(f"Creating Account for {username}...")
             update_worksheet = []                
             update_worksheet.append(username)
-            print(username)
             update_worksheet.append(password)
-            print(password)
-            print(update_worksheet)
             login.append_row(update_worksheet)
             print(f"Account created Successfully!")
             break
 
-def login():
+def logon():
         login_username = input("Username: ")
         for i in range(len(username_col)):
             if username_col[i] == login_username:
@@ -119,10 +116,11 @@ def get_points(username):
 
 
 def main():
-    login_register()
+    ##login_register()
     ##question_answer()
     ##get_points(login.find("test"))
     ##get_username()
+    create_new_user()
 
 
 
