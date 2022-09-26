@@ -25,17 +25,55 @@ points_col = login.col_values(3)
 print("Welcome to the worlds greatest quiz")
 print("Instructions\n First login or register\n To play the game type true or false on each question\n The highest score is 100 points\n Each time you play there will be new questions!\n No cheating ;)")
 
+def create_new_user():
+     while True:
+        username = input("Enter new Username: ")
+        while username in username_col:
+            print(f"'{username}' already exists")
+            break
+            username = input("Enter new Username: ")
+        else:   
+            password = input("Enter new Password: ")
+            points = 0
+            print(f"Creating Account for {username}...")
+            update_worksheet = []                
+            update_worksheet.append(username)
+            update_worksheet.append(password)
+            update_worksheet.append(points)
+            login.append_row(update_worksheet)
+            print(f"Account created Successfully!")
+            break
+      
 
+def logon():
+        username = input("Username: ")
+        points = 0
+        for i in range(len(username_col)):
+            if username_col[i] == username:
+                password = input('Password: ')
+                if password_col[i] == password:
+                    print('Success')
+                    points = points_col[i]
+                    print(f"You last scored: {points} points")
+                    
+
+                else:
+                    print("Password Incorrect")
+                    login_register()
+            elif i == len(username_col)-1:
+                print("Username not found")
+                login_register()
 
 def login_register():
     inital_question = input("Do you have an account? y/n: ")
     if inital_question == "n":
         create_new_user()
+        print(username_col)
     
     if inital_question == "y":
         print(f"Please login")
+        print(username_col)
         logon()
-        inital_question == "n"
         
     else:
         login_register()
@@ -68,41 +106,7 @@ def question_answer():
                     print(count)
                     break
 
-def create_new_user():
-     while True:
-        username = input("Enter new Username: ")
-        while username in username_col:
-            print(f"'{username}' already exists")
-            break
-            username = input("Enter new Username: ")
-        else:   
-            password = input("Enter new Password: ")
-            print(f"Creating Account for {username}...")
-            update_worksheet = []                
-            update_worksheet.append(username)
-            update_worksheet.append(password)
-            login.append_row(update_worksheet)
-            print(f"Account created Successfully!")
-            break
 
-def logon():
-        login_username = input("Username: ")
-        points = 0
-        for i in range(len(username_col)):
-            if username_col[i] == login_username:
-                login_password = input('Password: ')
-                if password_col[i] == login_password:
-                    print('Success')
-                    points = points_col[i]
-                    print(f"You last scored: {points} points")
-                    break
-
-                else:
-                    print("Password Incorrect")
-                    login_register()
-            elif i == len(username_col)-1:
-                print("Username not found")
-                login_register()
 
 
 
