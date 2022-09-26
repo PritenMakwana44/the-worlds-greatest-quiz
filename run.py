@@ -15,6 +15,11 @@ SHEET = GSPREAD_CLIENT.open('the_worlds_greatest_quiz')
 
 bank = SHEET.worksheet('bank')
 login = SHEET.worksheet('login')
+username_col = login.col_values(1)
+password_col = login.col_values(2)
+question_col = bank.col_values(1)
+answer_col = bank.col_values(2)
+points_col = login.col_values(3)
 
 
 print("Welcome to the worlds greatest quiz")
@@ -25,49 +30,18 @@ print("Instructions\n First login or register\n To play the game type true or fa
 def login_register():
     inital_question = input("Do you have an account? y/n: ")
     if inital_question == "n":
-        while True:
-            username = input("Enter new Username: ")
-            username_list = login.col_values(1)
-            while username in username_list:
-                print(f"'{username}' already exists")
-                break
-                username = input("Enter new Username: ")
-            else:   
-                password = input("Enter new Password: ")
-                print(f"Creating Account for {username}...")
-                update_worksheet = []                
-                update_worksheet.append(username)
-                update_worksheet.append(password)
-                login.append_row(update_worksheet)
-                print(f"Account created Successfully!")
-                inital_question ="y"
-                break
-    
+        create_new_user()
     
     if inital_question == "y":
         print(f"Please login")
-        username_list = login.col_values(1)
-        password_list = login.col_values(2)
-        login_username = input("Username: ")
-        for i in range(len(username_list)):
-            if username_list[i] == login_username:
-                login_password = input('Password: ')
-                if password_list[i] == login_password:
-                    print('Success')
-                    break
-                else:
-                    print("Password Incorrect")
-                    login_register()
-            elif i == len(username_list)-1:
-                print("Username not found")
-                login_register()
+        login()
+        inital_question == "n"
+        
+        
 
                
 def question_answer():
-    question_col = bank.col_values(1)
-    answer_col = bank.col_values(2)
     
-
     for count in range(10):
         question = random.choice(question_col)
         
@@ -89,18 +63,70 @@ def question_answer():
                     print("Incorrect")
                     print(count)
                     break
-        
 
-        
+def create_new_user():
+     while True:
+        username = input("Enter new Username: ")
+        while username in username_col:
+            print(f"'{username}' already exists")
+            break
+            username = input("Enter new Username: ")
+        else:   
+            password = input("Enter new Password: ")
+            print(f"Creating Account for {username}...")
+            update_worksheet = []                
+            update_worksheet.append(username)
+            print(username)
+            update_worksheet.append(password)
+            print(password)
+            print(update_worksheet)
+            login.append_row(update_worksheet)
+            print(f"Account created Successfully!")
+            break
 
+def login():
+        login_username = input("Username: ")
+        for i in range(len(username_col)):
+            if username_col[i] == login_username:
+                login_password = input('Password: ')
+                if password_col[i] == login_password:
+                    print('Success')
+                    break
+                else:
+                    print("Password Incorrect")
+                    login_register()
+            elif i == len(username_col)-1:
+                print("Username not found")
+                login_register()
+
+
+def get_username():
+    username = input("Enter new Username: ")
+    for i in range(len(username_col)):
+        if username == username_col[i]:
+            
+            return(username_col[i])
+
+
+def get_points(username):
+    points = 0
+    for i in range(len(username_col)):
+        if username == username_col[i]:
+            points == points_col[i]
+            print(points)
 
     
 
 
 def main():
-    ##login_register()
-    question_answer()
+    login_register()
+    ##question_answer()
+    ##get_points(login.find("test"))
+    ##get_username()
+
+
 
 
 
 main()
+
