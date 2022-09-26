@@ -34,8 +34,12 @@ def login_register():
     
     if inital_question == "y":
         print(f"Please login")
-        login()
+        logon()
         inital_question == "n"
+        
+    else:
+        login_register()
+
         
         
 
@@ -83,12 +87,16 @@ def create_new_user():
 
 def logon():
         login_username = input("Username: ")
+        points = 0
         for i in range(len(username_col)):
             if username_col[i] == login_username:
                 login_password = input('Password: ')
                 if password_col[i] == login_password:
                     print('Success')
+                    points = points_col[i]
+                    print(f"You last scored: {points} points")
                     break
+
                 else:
                     print("Password Incorrect")
                     login_register()
@@ -97,30 +105,21 @@ def logon():
                 login_register()
 
 
-def get_username():
-    username = input("Enter new Username: ")
-    for i in range(len(username_col)):
-        if username == username_col[i]:
-            
-            return(username_col[i])
 
 
-def get_points(username):
-    points = 0
-    for i in range(len(username_col)):
-        if username == username_col[i]:
-            points == points_col[i]
-            print(points)
 
     
 
 
 def main():
-    ##login_register()
-    ##question_answer()
-    ##get_points(login.find("test"))
-    ##get_username()
-    create_new_user()
+    login_register()
+    print("...")
+    print("Ready...")
+    print("Steady...")
+    print("Let's Begin!!!")
+
+    question_answer()
+   
 
 
 
