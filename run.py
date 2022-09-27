@@ -69,6 +69,10 @@ def logon():
         elif i == len(username_list)-1:
                 print("Username not found")
                 break
+
+    question_answer()
+    return username_list
+    
                 
 
 def login_register():
@@ -87,8 +91,7 @@ def login_register():
         
         
                
-def question_answer():
-    
+def question_answer(function):
     for count in range(10):
         question = random.choice(question_col)
         
@@ -102,14 +105,15 @@ def question_answer():
         answer_input = input('Enter True or False: ')
         for i in range(len(question_col)):
             if question_col[i] == question:
+                
                 if answer_col[i] == answer_input.upper():
                     print("correct")
-                    print(count)
                     break
                 else:
                     print("Incorrect")
-                    print(count)
                     break
+        
+       
 
 
 
@@ -124,10 +128,11 @@ def main():
     login_register()
     print("...")
     print("Ready...")
-    print("Let's Begin!!!")
     print("Steady...")
+    print("Let's Begin!!!")
+    
 
-    question_answer()
+    question_answer(username_list)
    
 
 
