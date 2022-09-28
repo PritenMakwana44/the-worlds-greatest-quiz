@@ -21,6 +21,9 @@ points_col = login.col_values(3)
 question_col = bank.col_values(1)
 answer_col = bank.col_values(2)
 
+
+
+
 print("Welcome to the worlds greatest quiz")
 print("Instructions\n First login or register\n To play the game type true or false on each question\n The highest score is 100 points\n Each time you play there will be new questions!\n No cheating ;)")
 
@@ -61,6 +64,7 @@ def logon():
                 print('Success')
                 points = points_list[i]
                 print(f"You last scored: {points} points")
+                question_answer(username)
                 break
                     
             else:
@@ -69,9 +73,7 @@ def logon():
         elif i == len(username_list)-1:
                 print("Username not found")
                 break
-
-    question_answer()
-    return username_list
+    
     
                 
 
@@ -89,33 +91,47 @@ def login_register():
         login_register()
 
         
-        
                
-def question_answer(function):
-    for count in range(10):
+def question_answer(username):
+    
+    qa_username = username
+    qa_username_cell = login.find(qa_username)
+    
+    
+    
+
+    print("...")
+    print("Ready...")
+    print("Steady...")
+    print("Let's Begin!!!")
+   
+    for count in range(3):
         question = random.choice(question_col)
         
         if question == "question":
-            question_answer()
+            question_answer(username)
         
         else:
             print(question)
 
-    
         answer_input = input('Enter True or False: ')
         for i in range(len(question_col)):
             if question_col[i] == question:
                 
                 if answer_col[i] == answer_input.upper():
                     print("correct")
-                    break
+                    increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
+                    increment = increment + 10
+                    login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
+                    
                 else:
                     print("Incorrect")
-                    break
+            
+                    
+   
+
         
        
-
-
 
 
 
@@ -126,13 +142,8 @@ def question_answer(function):
 
 def main():
     login_register()
-    print("...")
-    print("Ready...")
-    print("Steady...")
-    print("Let's Begin!!!")
-    
+   
 
-    question_answer(username_list)
    
 
 
