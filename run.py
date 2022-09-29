@@ -96,28 +96,26 @@ def question_answer(username):
     
     qa_username = username
     qa_username_cell = login.find(qa_username)
-    
-    
-    
+    question_list = question_col
+    question_list.remove("question")
+    print(question_list)
+    qa_answer_col = login.find(question)
 
+    if 
+
+    
     print("...")
     print("Ready...")
     print("Steady...")
     print("Let's Begin!!!")
    
     for count in range(3):
-        question = random.choice(question_col)
-        
-        if question == "question":
-            question_answer(username)
-        
-        else:
-            print(question)
+        question = random.choice(question_list)
+        print(question)
 
         answer_input = input('Enter True or False: ')
-        for i in range(len(question_col)):
-            if question_col[i] == question:
-                
+        for i in range(len(question_list)):
+            if question_list[i] == question:
                 if answer_col[i] == answer_input.upper():
                     print("correct")
                     increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
@@ -126,7 +124,11 @@ def question_answer(username):
                     
                 else:
                     print("Incorrect")
+   
+    get_points = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
+    print(f"You now have {get_points} points")
             
+
                     
    
 
