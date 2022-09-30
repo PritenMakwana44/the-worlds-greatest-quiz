@@ -100,14 +100,13 @@ def question_answer(username):
     qa_username_cell = login.find(qa_username)
     question_list = question_col
     question_list.remove("question")
-    print(question_list)
 
     print("...")
     print("Ready...")
     print("Steady...")
     print("Let's Begin!!!")
    
-    for count in range(3):
+    for count in range(10):
         question = random.choice(question_list)
         question_cell = bank.find(question)
         answer_cell = bank.cell(question_cell.row, question_cell.col + 1).value
@@ -121,26 +120,16 @@ def question_answer(username):
                     increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
                     increment = increment + 10
                     login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
+                    
                 else:
                     print("Incorrect")
-                        
+                
     question_list.remove(question)
     get_points = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
     print(f"You now have {get_points} points")
-            
-
-                    
-   
-
-        
-       
-
-
-
 
 
     
-
 
 def main():
     login_register()
