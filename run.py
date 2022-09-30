@@ -114,6 +114,9 @@ def question_answer(username):
         for i in range(len(question_list)):
             if question_list[i] == question:
                 print(question)
+                print(question_list[i])
+                print(question_list)
+                del question_list[i]
                 answer_input = input('Enter True or False: ')
                 if answer_cell.upper() == answer_input.upper():
                     print("correct")
@@ -123,8 +126,7 @@ def question_answer(username):
                     
                 else:
                     print("Incorrect")
-                
-    question_list.remove(question)
+       
     get_points = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
     print(f"You now have {get_points} points")
 
