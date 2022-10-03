@@ -32,13 +32,25 @@ def create_new_user():
     password_list = login.col_values(2)
     points_list = login.col_values(3)
     while True:
-        username = input("Enter new Username: ")
+        username = input("Enter new Username:")
+        for s in username:
+            if(s.isspace()) == True:
+                print(f"Please fill in a valid Username")
+                create_new_user()
+
         while username in username_list:
             print(f"'{username}' already exists")
             break
-            username = input("Enter new Username: ")
-        else:   
+            username = input("Enter new Username:")
+        
+
+        else:
+            
             password = input("Enter new Password: ")
+            for s in password:
+                if(s.isspace()) == True:
+                    print(f"Please fill in a valid password")
+                    password = input("Enter new Password: ")
             points = 0
             print(f"Creating Account for {username}...")
             update_worksheet = []                
@@ -47,11 +59,12 @@ def create_new_user():
             update_worksheet.append(points)
             login.append_row(update_worksheet)
             print(f"Account created Successfully!")
-            break
+            logon()
+            
       
 
 def logon():
-
+    print(f"Please login")
     username = input('username: ')
     points = 0
     username_list = login.col_values(1)
@@ -86,7 +99,6 @@ def login_register():
         
     
     if inital_question == "y":
-        print(f"Please login")
         logon()
     
     else:
@@ -126,7 +138,12 @@ def question_answer(username):
        
     get_points = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
     print(f"You now have {get_points} points")
+    
 
+
+  
+
+    
 
     
 
