@@ -114,9 +114,6 @@ def question_answer(username):
         for i in range(len(question_list)):
             if question_list[i] == question:
                 print(question)
-                print(question_list[i])
-                print(question_list)
-                del question_list[i]
                 answer_input = input('Enter True or False: ')
                 if answer_cell.upper() == answer_input.upper():
                     print("correct")
