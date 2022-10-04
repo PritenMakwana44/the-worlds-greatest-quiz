@@ -32,11 +32,18 @@ def create_new_user():
     password_list = login.col_values(2)
     points_list = login.col_values(3)
     while True:
-        username = input("Enter new Username:")
-        for s in username:
-            if(s.isspace()) == True:
-                print(f"Please fill in a valid Username")
-                create_new_user()
+        try:
+            username = input("Enter new Username:")
+            while len(username.strip()) == 0:
+                raise ValueError
+            for s in username:
+                if(s.isspace()) == True:
+                    raise ValueError
+
+        except ValueError:
+            print(f"There must be no spaces in your username.")
+            print(f"Please try again.")
+            create_new_user()
 
         while username in username_list:
             print(f"'{username}' already exists")
@@ -110,8 +117,7 @@ def question_answer(username):
     
     qa_username = username
     qa_username_cell = login.find(qa_username)
-    question_list = question_col
-    question_list.remove("question")
+    (question_col).remove("question")
 
     print("...")
     print("Ready...")
@@ -119,13 +125,15 @@ def question_answer(username):
     print("Let's Begin!!!")
    
     for count in range(10):
-        question = random.choice(question_list)
+        question = random.choice(question_col)
         question_cell = bank.find(question)
         answer_cell = bank.cell(question_cell.row, question_cell.col + 1).value
 
-        for i in range(len(question_list)):
-            if question_list[i] == question:
+        for i in range(len(question_col)):
+            if (question_col)[i] == question:
                 print(question)
+                (question_list).remove(question)
+                
                 
                 while True:
                     answer_input = input('Enter True or False: ').upper()
@@ -153,7 +161,8 @@ def question_answer(username):
                     if answer_input.upper() != 'TRUE' or 'FALSE':
                         print("Invalid Input")
                     
-                    
+                
+                print(f" ")
                     
                 
                     
