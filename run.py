@@ -127,7 +127,8 @@ def question_answer(username):
     
     qa_username = username
     qa_username_cell = login.find(qa_username)
-    (question_col).remove("question")
+    question_list = question_col
+    question_list.remove("question")
 
     print("...")
     print("Ready...")
@@ -135,50 +136,49 @@ def question_answer(username):
     print("Let's Begin!!!")
    
     for count in range(10):
-        question = random.choice(question_col)
+        question = random.choice(question_list)
         question_cell = bank.find(question)
         answer_cell = bank.cell(question_cell.row, question_cell.col + 1).value
 
-        for i in range(len(question_col)):
-            if (question_col)[i] == question:
+        for i in range(len(question_list)):
+            if question_list[i] == question:
                 print(question)
-                (question_list).remove(question)
                 
-                
-                while True:
+                answer_input = input('Enter True or False: ').upper()
+                if answer_input.upper() != 'TRUE' or 'FALSE':
+                    print("Invalid Input")
                     answer_input = input('Enter True or False: ').upper()
-                    if answer_input.upper() == 'TRUE': 
-                        if answer_cell.upper() == answer_input.upper():
-                            print("correct")
-                            increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
-                            increment = increment + 10
-                            login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
-                            break
-                        elif answer_cell.upper() != answer_input.upper():
-                            print("Incorrect")
-                            break
-                
-                    if answer_input.upper() == 'FALSE': 
-                        if answer_cell.upper() == answer_input.upper():
-                            print("correct")
-                            increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
-                            increment = increment + 10
-                            login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
-                            break
-                        elif answer_cell.upper() != answer_input.upper():
-                            print("Incorrect")
-                            break
-                    if answer_input.upper() != 'TRUE' or 'FALSE':
-                        print("Invalid Input")
+                if answer_input.upper() == 'TRUE': 
+                    if answer_cell.upper() == answer_input.upper():
+                        print("correct")
+                        increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
+                        increment = increment + 10
+                        login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
+                        break
+                    elif answer_cell.upper() != answer_input.upper():
+                        print("Incorrect")
+                        break
                     
+                if answer_input.upper() == 'FALSE': 
+                    if answer_cell.upper() == answer_input.upper():
+                        print("correct")
+                        increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
+                        increment = increment + 10
+                        login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
+                        break
+                    elif answer_cell.upper() != answer_input.upper():
+                        print("Incorrect")
+                        break
                 
-                print(f" ")
+                        
                     
                 
                     
        
     get_points = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
     print(f"You now have {get_points} points")
+    
+
     
 
 def main():
