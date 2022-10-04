@@ -31,9 +31,11 @@ def create_new_user():
     username_list = login.col_values(1)
     password_list = login.col_values(2)
     points_list = login.col_values(3)
+    
+    username = input("Enter new Username:")
+    
     while True:
         try:
-            username = input("Enter new Username:")
             while len(username.strip()) == 0:
                 raise ValueError
             for s in username:
@@ -44,20 +46,29 @@ def create_new_user():
             print(f"There must be no spaces in your username.")
             print(f"Please try again.")
             create_new_user()
-
-        while username in username_list:
+        if username in username_list:
             print(f"'{username}' already exists")
-            break
             username = input("Enter new Username:")
-        
-
         else:
-            
-            password = input("Enter new Password: ")
-            for s in password:
-                if(s.isspace()) == True:
+            print("Username Accepted...")
+            break
+
+
+    password = input("Enter new Password: ")
+    while True:
+        for s in password:        
+                if (s.isspace()) == True:
                     print(f"Please fill in a valid password")
                     password = input("Enter new Password: ")
+                    
+            
+        if (len(password.strip()) == 0):
+            print(f"Please fill in a valid password")
+            password = input("Enter new Password: ")
+                    
+            
+                    
+        else:
             points = 0
             print(f"Creating Account for {username}...")
             update_worksheet = []                
@@ -67,9 +78,8 @@ def create_new_user():
             login.append_row(update_worksheet)
             print(f"Account created Successfully!")
             logon()
+            break
             
-      
-
 def logon():
     print(f"Please login")
     username = input('username: ')
