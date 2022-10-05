@@ -144,37 +144,37 @@ def question_answer(username):
             if question_list[i] == question:
                 print(question)
                 
+            
                 answer_input = input('Enter True or False: ').upper()
-                if answer_input.upper() != 'TRUE' or 'FALSE':
-                    print("Invalid Input")
-                    answer_input = input('Enter True or False: ').upper()
-                if answer_input.upper() == 'TRUE': 
-                    if answer_cell.upper() == answer_input.upper():
-                        print("correct")
-                        increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
-                        increment = increment + 10
-                        login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
-                        break
-                    elif answer_cell.upper() != answer_input.upper():
-                        print("Incorrect")
-                        break
-                    
-                if answer_input.upper() == 'FALSE': 
-                    if answer_cell.upper() == answer_input.upper():
-                        print("correct")
-                        increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
-                        increment = increment + 10
-                        login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
-                        break
-                    elif answer_cell.upper() != answer_input.upper():
-                        print("Incorrect")
-                        break
-                
+                while True:
+                    if answer_input.upper() == 'TRUE': 
+                        if answer_cell.upper() == answer_input.upper():
+                            print("correct")
+                            increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
+                            increment = increment + 10
+                            login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
+                            break
+                            
+                        elif answer_cell.upper() != answer_input.upper():
+                            print("Incorrect")
+                            break
                         
-                    
-                
-                    
-       
+                    elif answer_input.upper() == 'FALSE': 
+                        if answer_cell.upper() == answer_input.upper():
+                            print("correct")
+                            increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
+                            increment = increment + 10
+                            login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
+                            break
+                            
+                        elif answer_cell.upper() != answer_input.upper():
+                            print("Incorrect")
+                            break
+
+                    else:
+                            print("Invalid Input")
+                            answer_input = input('Enter True or False: ').upper()
+                            
     get_points = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
     print(f"You now have {get_points} points")
     
