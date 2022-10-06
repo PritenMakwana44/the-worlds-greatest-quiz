@@ -127,6 +127,8 @@ def question_answer(username):
     
     qa_username = username
     qa_username_cell = login.find(qa_username)
+    answer_list = answer_col
+    answer_list.remove("answer")
     question_list = question_col
     question_list.remove("question")
 
@@ -134,7 +136,18 @@ def question_answer(username):
     print("Ready...")
     print("Steady...")
     print("Let's Begin!!!")
-   
+    
+
+    question_list_length = len(question_list)
+    random_number_gen = []
+    random_number_gen = random.sample(range(question_list_length), 10)
+
+    print(random_number_gen)
+
+    
+
+
+
     for count in range(10):
         question = random.choice(question_list)
         question_cell = bank.find(question)
@@ -143,8 +156,6 @@ def question_answer(username):
         for i in range(len(question_list)):
             if question_list[i] == question:
                 print(question)
-                
-            
                 answer_input = input('Enter True or False: ').upper()
                 while True:
                     if answer_input.upper() == 'TRUE': 
@@ -172,9 +183,10 @@ def question_answer(username):
                             break
 
                     else:
-                            print("Invalid Input")
-                            answer_input = input('Enter True or False: ').upper()
-                            
+                        print("Invalid Input")
+                        answer_input = input('Enter True or False: ').upper()
+
+
     get_points = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
     print(f"You now have {get_points} points")
     
