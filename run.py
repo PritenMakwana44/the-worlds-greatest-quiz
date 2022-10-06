@@ -25,31 +25,31 @@ answer_col = bank.col_values(2)
 
 
 
-
-print("Welcome To The Worlds Greatest Quiz")
-sleep(1)
-print("Instructions")
-sleep(1)
-print("...")
-sleep(1)
-print("First Login or Regiester")
-sleep(1)
-print("...")
-sleep(1)
-print("To play the game type True or False on each question")
-sleep(1)
-print("...")
-sleep(1)
-print("Each time you play there will be new questions!")
-sleep(1)
-print("...")
-sleep(1)
-print("...")
-sleep(1)
-print("No cheating ;)")
-sleep(1)
-print("...")
-print(" ")
+def start_program():
+    print("Welcome To The Worlds Greatest Quiz")
+    sleep(1)
+    print("Instructions")
+    sleep(1)
+    print("...")
+    sleep(1)
+    print("First Login or Regiester")
+    sleep(1)
+    print("...")
+    sleep(1)
+    print("To play the game type True or False on each question")
+    sleep(1)
+    print("...")
+    sleep(1)
+    print("Each time you play there will be new questions!")
+    sleep(1)
+    print("...")
+    sleep(1)
+    print("...")
+    sleep(1)
+    print("No cheating ;)")
+    sleep(1)
+    print("...")
+    print(" ")
 
 
 
@@ -123,6 +123,7 @@ def logon():
                 points = points_list[i]
                 print(f"You Last Scored: {points} Points")
                 question_answer(username)
+                play_again_question(username)
                 break
                     
             else:
@@ -222,11 +223,33 @@ def question_answer(username):
     print(f"You now have {get_points} points")
     
 
+def scoreboard():
+    points_list = points_col
+    points_list.remove("points")
+    points_list = [int(i) for i in points_list]
+    points_list.sort()
+    print(f"All time highest Score: {points_list[-1]} Points")
 
+def play_again_question(username):
+    play_again = input("Do you want to play again? y/n: ")
+
+    if play_again == "y":
+        question_answer(username)
     
+    else:
+        print("Goodbye!")
+
+
+
+
+
+
 
 def main():
+    start_program()
     login_register()
+   
+    
    
 
    
