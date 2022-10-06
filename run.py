@@ -141,55 +141,58 @@ def question_answer(username):
     question_list_length = len(question_list)
     random_number_gen = []
     random_number_gen = random.sample(range(question_list_length), 10)
-
-    print(random_number_gen)
-
+    new_question_list = []
     
 
+    for index, value in enumerate(question_list):
+        for num in random_number_gen:
+            if num == index:
+                new_question_list.append(value)
+    
+    new_question_list_length = len(new_question_list)
+    count = 0
+    while count < new_question_list_length:
 
-
-    for count in range(10):
-        question = random.choice(question_list)
-        question_cell = bank.find(question)
+        
+        question_cell = bank.find(new_question_list[count])
         answer_cell = bank.cell(question_cell.row, question_cell.col + 1).value
+        print(new_question_list[count])
+        count +=1
+        answer_input = input('Enter True or False: ').upper()
+        while True:
+            if answer_input.upper() == 'TRUE': 
+                if answer_cell.upper() == answer_input.upper():
+                    print("correct")
+                    increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
+                    increment = increment + 10
+                    login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
+                    break
+                    
+                elif answer_cell.upper() != answer_input.upper():
+                    print("Incorrect")
+                    break
+                
+            elif answer_input.upper() == 'FALSE': 
+                if answer_cell.upper() == answer_input.upper():
+                    print("correct")
+                    increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
+                    increment = increment + 10
+                    login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
+                    break
+                    
+                elif answer_cell.upper() != answer_input.upper():
+                    print("Incorrect")
+                    break
 
-        for i in range(len(question_list)):
-            if question_list[i] == question:
-                print(question)
+            else:
+                print("Invalid Input")
                 answer_input = input('Enter True or False: ').upper()
-                while True:
-                    if answer_input.upper() == 'TRUE': 
-                        if answer_cell.upper() == answer_input.upper():
-                            print("correct")
-                            increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
-                            increment = increment + 10
-                            login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
-                            break
-                            
-                        elif answer_cell.upper() != answer_input.upper():
-                            print("Incorrect")
-                            break
-                        
-                    elif answer_input.upper() == 'FALSE': 
-                        if answer_cell.upper() == answer_input.upper():
-                            print("correct")
-                            increment = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
-                            increment = increment + 10
-                            login.update_cell(qa_username_cell.row, qa_username_cell.col + 2, increment)
-                            break
-                            
-                        elif answer_cell.upper() != answer_input.upper():
-                            print("Incorrect")
-                            break
-
-                    else:
-                        print("Invalid Input")
-                        answer_input = input('Enter True or False: ').upper()
 
 
     get_points = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
     print(f"You now have {get_points} points")
     
+
 
     
 
