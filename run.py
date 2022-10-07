@@ -157,6 +157,8 @@ Loops through username list according to length of list
 if there is a username match then it asks you for password.
 if password is correct then it prints the amount of points user has.
 if password is incorrect then it prompts to try again or if username doesn't exist then again it prompts
+
+note question_answer(username) which links to function and allows use of username
 """
     for i in range(len(username_list)):
         if username_list[i] == username:
@@ -198,6 +200,12 @@ def login_register():
         login_register()
 
         
+"""
+Function for question and answer with a username paramenter
+username variable declared as is cell for username
+answer and question lists delcared with removal of headings
+
+"""
                
 def question_answer(username):
     
@@ -213,12 +221,23 @@ def question_answer(username):
     print("Steady...")
     print("Let's Begin!!!")
     
+"""
+random number gen into list with 10 random numbers accoring to length of list of questions.
+usage of loop and iteration to generate list of numbers.
+new question list declared.
 
+Then question is asked one at a time while using the random num list as an index. The num list will never be above the number of questions in a list.
+After each question true or false is asked. the case is transformed into upper so it can match spreadsheet true or false checks.
+statements are used to reject any other answers other then true or false in higher or lower case.
+After each question correct or incorrect is printed and 10 points are added to the score of user if correct. 
+
+10 questions are presented via the loop. 
+At the end of the quiz the amount of points your on now in total is printed.
+"""
     question_list_length = len(question_list)
     random_number_gen = []
     random_number_gen = random.sample(range(question_list_length), 10)
     new_question_list = []
-    
 
     for index, value in enumerate(question_list):
         for num in random_number_gen:
@@ -268,6 +287,12 @@ def question_answer(username):
         print(f" ")
     get_points = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
     print(f"You now have {get_points} points")
+
+
+"""
+Scoreboard function finds the highest score in points list and tells the user what the highest amount of points are to beat!
+
+"""
     
 
 def scoreboard():
@@ -278,7 +303,10 @@ def scoreboard():
     print(f"All time highest Score: {points_list[-1]} Points")
 
 
-
+"""
+Main function activates all functions needed i.e start program, login register and scoreboard.
+Main function is then run so all functions needed within run.
+"""
 
 def main():
     start_program()
