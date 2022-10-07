@@ -136,6 +136,12 @@ if statement then used to keep prompting for a valid username until criteria is 
             print(f"Account Created Successfully!")
             logon()
             break
+
+"""
+Function for logon
+Prints instruction to login then prompts for input.
+Variables are local to grab columns from login sheet.
+"""
             
 def logon():
     print(f"Please Login")
@@ -146,13 +152,19 @@ def logon():
     username_list = login.col_values(1)
     password_list = login.col_values(2)
     points_list = login.col_values(3)
+"""
+Loops through username list according to length of list
+if there is a username match then it asks you for password.
+if password is correct then it prints the amount of points user has.
+if password is incorrect then it prompts to try again or if username doesn't exist then again it prompts
+"""
     for i in range(len(username_list)):
         if username_list[i] == username:
             password = input('Password: ')
             if password_list[i] == password:
                 print('Success')
                 points = points_list[i]
-                print(f"You Last Scored: {points} Points")
+                print(f"Current points scored by {username} is: {points} Points")
                 question_answer(username)
                 break
                     
@@ -166,7 +178,12 @@ def logon():
                 break
     
     
-                
+"""
+function which asks if user has an account or not. 
+It then allows user to interact in order to go to the correct function accordingly. 
+If you have an account and answer y - then you go to logon function
+if you don't and answer n - it goes to create_new_user function
+"""
 
 def login_register():
     inital_question = input("Do You Have An Account? y/n: ")
