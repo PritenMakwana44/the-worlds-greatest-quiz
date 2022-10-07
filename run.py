@@ -214,9 +214,10 @@ def question_answer(username):
     qa_username = username
     qa_username_cell = login.find(qa_username)
     answer_list = answer_col
-    answer_list.remove("answer")
+    if "answer" in answer_list: answer_list.remove("answer")
     question_list = question_col
-    question_list.remove("question")
+    if "question" in question_list: question_list.remove("question")
+
 
     print("...")
     print("Ready...")
@@ -310,7 +311,13 @@ Main function activates all functions needed i.e start program, login register a
 Main function is then run so all functions needed within run.
 """
 
+"""
+function for play again function. 
 
+At the end of the game if they would like to play again then the option is there. 
+username parameter is used and linked into logon function - this pushes the username without need for input
+
+"""
 def play_again(username):
     p_a_username = username
     print(p_a_username)
