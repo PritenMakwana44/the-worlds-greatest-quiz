@@ -290,6 +290,7 @@ def question_answer(username):
         print(f" ")
     get_points = int(login.cell(qa_username_cell.row, qa_username_cell.col + 2).value)
     print(f"You now have {get_points} points")
+    play_again(username)
 
 
 """
