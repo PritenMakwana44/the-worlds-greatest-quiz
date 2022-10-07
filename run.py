@@ -76,14 +76,13 @@ def create_new_user():
     username_list = login.col_values(1)
     password_list = login.col_values(2)
     points_list = login.col_values(3)
-    
     username = input("Enter New Username:")
 
-"""
-For username checks. If there are any invalidity of the username it raises errors i.e there is any spaces in the username - print statements indicate errors.
-if statement then used to keep prompting for a valid username until criteria is met. i.e if username doesn't exist in system already.
-"""
-    
+    """
+    For username checks. If there are any invalidity of the username it raises errors i.e there is any spaces in the username - print statements indicate errors.
+    if statement then used to keep prompting for a valid username until criteria is met. i.e if username doesn't exist in system already.
+    """
+
     while True:
         try:
             while len(username.strip()) == 0:
@@ -107,6 +106,11 @@ if statement then used to keep prompting for a valid username until criteria is 
     Once username is accepted a passoword input comes up.
     Again loops and if statements are used to check if password is valid.
     If invalid password box keeps prompting.
+
+    
+    If username and passwords are accepted then worksheet is updated and 0 points are assigned to user.
+    Ends with a print statement indicating success and then prompts for user to login via the logon function.
+
     """
 
     password = input("Enter New Password: ")
@@ -117,14 +121,11 @@ if statement then used to keep prompting for a valid username until criteria is 
                     password = input("Enter New Password: ")
                     
             
-        if (len(password.strip()) == 0):
+        if(len(password.strip()) == 0):
             print(f"Please fill in a valid password")
             password = input("Enter New Password: ")
         
-    """
-    If username and passwords are accepted then worksheet is updated and 0 points are assigned to user.
-    Ends with a print statement indicating success and then prompts for user to login via the logon function.
-    """
+        
         else:
             points = 0
             print(f"Creating Account For {username}...")
@@ -135,14 +136,14 @@ if statement then used to keep prompting for a valid username until criteria is 
             login.append_row(update_worksheet)
             print(f"Account Created Successfully!")
             logon()
-            break
+            break   
+
 
 """
 Function for logon
 Prints instruction to login then prompts for input.
 Variables are local to grab columns from login sheet.
 """
-            
 def logon():
     print(f"Please Login")
     print("...")
@@ -152,14 +153,14 @@ def logon():
     username_list = login.col_values(1)
     password_list = login.col_values(2)
     points_list = login.col_values(3)
-"""
-Loops through username list according to length of list
-if there is a username match then it asks you for password.
-if password is correct then it prints the amount of points user has.
-if password is incorrect then it prompts to try again or if username doesn't exist then again it prompts
+    """
+    Loops through username list according to length of list
+    if there is a username match then it asks you for password.
+    if password is correct then it prints the amount of points user has.
+    if password is incorrect then it prompts to try again or if username doesn't exist then again it prompts
 
-note question_answer(username) which links to function and allows use of username
-"""
+    note question_answer(username) which links to function and allows use of username
+    """
     for i in range(len(username_list)):
         if username_list[i] == username:
             password = input('Password: ')
@@ -168,6 +169,7 @@ note question_answer(username) which links to function and allows use of usernam
                 points = points_list[i]
                 print(f"Current points scored by {username} is: {points} Points")
                 question_answer(username)
+                play_again(username)
                 break
                     
             else:
@@ -221,19 +223,19 @@ def question_answer(username):
     print("Steady...")
     print("Let's Begin!!!")
     
-"""
-random number gen into list with 10 random numbers accoring to length of list of questions.
-usage of loop and iteration to generate list of numbers.
-new question list declared.
+    """
+    random number gen into list with 10 random numbers accoring to length of list of questions.
+    usage of loop and iteration to generate list of numbers.
+    new question list declared.
 
-Then question is asked one at a time while using the random num list as an index. The num list will never be above the number of questions in a list.
-After each question true or false is asked. the case is transformed into upper so it can match spreadsheet true or false checks.
-statements are used to reject any other answers other then true or false in higher or lower case.
-After each question correct or incorrect is printed and 10 points are added to the score of user if correct. 
+    Then question is asked one at a time while using the random num list as an index. The num list will never be above the number of questions in a list.
+    After each question true or false is asked. the case is transformed into upper so it can match spreadsheet true or false checks.
+    statements are used to reject any other answers other then true or false in higher or lower case.
+    After each question correct or incorrect is printed and 10 points are added to the score of user if correct. 
 
-10 questions are presented via the loop. 
-At the end of the quiz the amount of points your on now in total is printed.
-"""
+    10 questions are presented via the loop. 
+    At the end of the quiz the amount of points your on now in total is printed.
+    """
     question_list_length = len(question_list)
     random_number_gen = []
     random_number_gen = random.sample(range(question_list_length), 10)
@@ -307,6 +309,27 @@ def scoreboard():
 Main function activates all functions needed i.e start program, login register and scoreboard.
 Main function is then run so all functions needed within run.
 """
+
+
+def play_again(username):
+    p_a_username = username
+    print(p_a_username)
+    question_play_again = input("Would you like to play again? y/n: ")
+
+    if question_play_again == "y":
+        question_answer(p_a_username)
+
+    elif question_play_again == "n":
+        print("Goodbye!") 
+    
+    else:
+        print("Invalid Input")
+        play_again(p_a_username)
+
+
+
+
+
 
 def main():
     start_program()
