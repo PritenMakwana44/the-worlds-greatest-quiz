@@ -1,8 +1,15 @@
+"""
+Import's for usuage of gspread, random and sleep functions.
+"""
+
 import gspread
 from google.oauth2.service_account import Credentials
 import random
 from time import sleep
 
+"""
+Scope to connect to Google services
+"""
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -10,11 +17,18 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
+"""
+Variables to access Google sheets
+"""
+
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('the_worlds_greatest_quiz')
 
+"""
+Variables to access worksheets and columns
+"""
 bank = SHEET.worksheet('bank')
 login = SHEET.worksheet('login')
 username_col = login.col_values(1)
@@ -23,7 +37,10 @@ points_col = login.col_values(3)
 question_col = bank.col_values(1)
 answer_col = bank.col_values(2)
 
-
+"""
+start program function welcomes users and gives instructions via print statements
+Sleep function delays the printing
+"""
 
 def start_program():
     print("Welcome To The Worlds Greatest Quiz")
@@ -44,14 +61,16 @@ def start_program():
     sleep(1)
     print("...")
     sleep(1)
-    print("...")
-    sleep(1)
     print("No cheating ;)")
     sleep(1)
     print("...")
     print(" ")
 
-
+"""
+Create new new user function. 
+Variables - get list from login worksheet for columns for username, password and points
+Input then specified for user to create username.
+"""
 
 def create_new_user():
     username_list = login.col_values(1)
@@ -59,6 +78,11 @@ def create_new_user():
     points_list = login.col_values(3)
     
     username = input("Enter New Username:")
+
+"""
+For username checks. If there are any invalidity of the username it raises errors i.e there is any spaces in the username - print statements indicate errors.
+if statement then used to keep prompting for a valid username until criteria is met. i.e if username doesn't exist in system already.
+"""
     
     while True:
         try:
@@ -79,6 +103,11 @@ def create_new_user():
             print("Username Accepted...")
             break
 
+    """
+    Once username is accepted a passoword input comes up.
+    Again loops and if statements are used to check if password is valid.
+    If invalid password box keeps prompting.
+    """
 
     password = input("Enter New Password: ")
     while True:
@@ -91,9 +120,11 @@ def create_new_user():
         if (len(password.strip()) == 0):
             print(f"Please fill in a valid password")
             password = input("Enter New Password: ")
-                    
-            
-                    
+        
+    """
+    If username and passwords are accepted then worksheet is updated and 0 points are assigned to user.
+    Ends with a print statement indicating success and then prompts for user to login via the logon function.
+    """
         else:
             points = 0
             print(f"Creating Account For {username}...")
@@ -123,7 +154,6 @@ def logon():
                 points = points_list[i]
                 print(f"You Last Scored: {points} Points")
                 question_answer(username)
-                play_again_question(username)
                 break
                     
             else:
@@ -230,34 +260,13 @@ def scoreboard():
     points_list.sort()
     print(f"All time highest Score: {points_list[-1]} Points")
 
-def play_again_question(username):
-    play_again = input("Do you want to play again? y/n: ")
-
-    if play_again == "y":
-        question_answer(username)
-    
-    else:
-        print("Goodbye!")
-
-
-
-
 
 
 
 def main():
     start_program()
     login_register()
-   
-    
-   
-
-   
-
-
-
-
-
+    scoreboard()
 
 main()
 
