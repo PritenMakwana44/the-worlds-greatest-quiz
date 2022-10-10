@@ -40,28 +40,20 @@ def start_program():
     Gives instructions via print statements
     Sleep function delays the printing
     """
+    print("-----------------------------------------------------")
     print("Welcome To The Worlds Greatest Quiz")
+    print("-----------------------------------------------------")
     sleep(1)
-    print("Instructions")
-    sleep(1)
-    print("...")
-    sleep(1)
+    print("-----------------------------------------------------")
+    print("*--- Instructions ---*")
     print("First Login or Regiester")
-    sleep(1)
-    print("...")
-    sleep(1)
     print("To play the game type True or False on each question")
-    sleep(1)
-    print("...")
-    sleep(1)
-    print("Each time you play there will be new questions!")
-    sleep(1)
-    print("...")
+    print("Each time you play there will be new questions")
+    print("Try beat the all time High score!")
+    print("-----------------------------------------------------")
     sleep(1)
     print("No cheating ;)")
-    sleep(1)
-    print("...")
-    print(" ")
+    print("-----------------------------------------------------")
 
 
 def create_new_user():
@@ -100,6 +92,7 @@ def create_new_user():
             username = input("Enter New Username:")
         else:
             print("Username Accepted...")
+            sleep(1)
             break
     password = input("Enter New Password: ")
     while True:
@@ -113,12 +106,14 @@ def create_new_user():
         else:
             points = 0
             print(f"Creating Account For {username}...")
+            sleep(1)
             update_worksheet = []
             update_worksheet.append(username)
             update_worksheet.append(password)
             update_worksheet.append(points)
             login.append_row(update_worksheet)
             print("Account Created Successfully!")
+            sleep(1)
             logon()
             break
 
@@ -137,8 +132,9 @@ def logon():
     note question_answer(username) which links to function
     and allows use of username
     """
+    print("-----------------------------------------------------")
     print("Please Login")
-    print("...")
+    print("-----------------------------------------------------")
     username = input('Username: ')
     points = 0
     username_list = login.col_values(1)
@@ -146,9 +142,11 @@ def logon():
     points_list = login.col_values(3)
     for i, user in enumerate(username_list):
         if user == username:
+            print("Username Accepted...")
             password = input('Password: ')
             if password_list[i] == password:
-                print('Success')
+                print('Login Successful')
+                sleep(1)
                 points = points_list[i]
                 print(f"Points scored by {username} is: {points} Points")
                 question_answer(username)
@@ -210,10 +208,17 @@ def question_answer(username):
     if "question" in question_list:
         question_list.remove("question")
 
-    print("...")
+    sleep(1)
+    print("-----------------------------------------------------")
     print("Ready...")
+    print("-----------------------------------------------------")
+    sleep(1)
     print("Steady...")
+    print("-----------------------------------------------------")
+    sleep(1)
     print("Let's Begin!!!")
+    print("-----------------------------------------------------")
+    sleep(1)
     question_list_length = len(question_list)
     random_number_gen = []
     random_number_gen = random.sample(range(question_list_length), 10)
@@ -233,7 +238,9 @@ def question_answer(username):
         count += 1
         answer_input = input('Enter True or False: ').upper()
         print(" ")
+        print("-----------------------------------------------------")
         print("Result:")
+        print("-----------------------------------------------------")
         while True:
             if answer_input.upper() == 'TRUE':
                 if answer_cell.upper() == answer_input.upper():
@@ -267,7 +274,9 @@ def question_answer(username):
         print(" ")
     get_points = int(login.cell(qa_username_cell.row,
                                 qa_username_cell.col + 2).value)
+    print("-----------------------------------------------------")
     print(f"You now have {get_points} points")
+    print("-----------------------------------------------------")
     play_again(username)
 
 
@@ -291,7 +300,6 @@ def play_again(username):
     this pushes the username without need for input
     """
     p_a_username = username
-    print(p_a_username)
     question_play_again = input("Would you like to play again? y/n: ")
 
     if question_play_again == "y":
@@ -312,6 +320,7 @@ def main():
     Main function is then run so all functions needed within run.
     """
     start_program()
+    scoreboard()
     login_register()
     scoreboard()
 
