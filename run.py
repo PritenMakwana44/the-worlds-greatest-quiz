@@ -36,7 +36,7 @@ answer_col = bank.col_values(2)
 
 def start_program():
     """
-    start program function welcomes users
+    Start program function welcomes users
     Gives instructions via print statements
     Sleep function delays the printing
     """
@@ -59,8 +59,7 @@ def start_program():
 def create_new_user():
     """
     Get list from login worksheet for col
-    Input then specified for user to create account
-    For username checks
+    Input username to create account
     If there are any invalidity of the username  raises errors
     i.e there is any spaces in the username - print statements indicate errors.
     if statement then used to keep prompting for a valid username
@@ -180,9 +179,9 @@ def login_register():
 def question_answer(username):
     """
     Function for question and answer with a username paramenter
-    username variable declared as is cell for username
+    username variable declared as cell for username
     answer and question lists delcared with removal of headings
-     random number gen into list with 10 random numbers
+    random number gen into list with 10 random numbers
     Gets length of list of questions.
     usage of loop and iteration to generate list of numbers.
     new question list declared.
