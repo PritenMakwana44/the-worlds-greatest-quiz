@@ -299,6 +299,7 @@ def play_again(username):
 
     elif question_play_again == "n":
         print("Goodbye!")
+        exit()
     else:
         print("Invalid Input")
         play_again(p_a_username)
