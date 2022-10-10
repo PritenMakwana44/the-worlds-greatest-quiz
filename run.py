@@ -144,12 +144,12 @@ def logon():
     username_list = login.col_values(1)
     password_list = login.col_values(2)
     points_list = login.col_values(3)
-    for i in range(len(username_list)):
-        if username_list[i] == username:
+    for name in username_list:
+        if username_list[name] == username:
             password = input('Password: ')
-            if password_list[i] == password:
+            if password_list[name] == password:
                 print('Success')
-                points = points_list[i]
+                points = points_list[name]
                 print(f"Points scored by {username} is: {points} Points")
                 question_answer(username)
                 play_again(username)
@@ -157,7 +157,7 @@ def logon():
             else:
                 print("Password Incorrect")
                 login_register()
-        elif i == len(username_list)-1:
+        elif name == len(username_list)-1:
             print("Username Not Found!")
             login_register()
             break
@@ -299,6 +299,7 @@ def play_again(username):
 
     elif question_play_again == "n":
         print("Goodbye!")
+        return
     else:
         print("Invalid Input")
         play_again(p_a_username)
