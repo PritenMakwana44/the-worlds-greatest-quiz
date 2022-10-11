@@ -220,7 +220,7 @@ def question_answer(username):
     sleep(1)
     question_list_length = len(question_list)
     random_number_gen = []
-    random_number_gen = random.sample(range(question_list_length), 10)
+    random_number_gen = random.sample(range(question_list_length), 11)
     new_question_list = []
 
     for index, value in enumerate(question_list):
@@ -228,11 +228,12 @@ def question_answer(username):
             if num == index:
                 new_question_list.append(value)
     new_question_list_length = len(new_question_list)
-    count = 0
+    count = 1
     while count < new_question_list_length:
         question_cell = bank.find(new_question_list[count])
         answer_cell = bank.cell(question_cell.row, question_cell.col + 1).value
         print(" ")
+        print(f'Question {count}')
         print(new_question_list[count])
         count += 1
         answer_input = input('Enter (T)rue or (F)alse: ').upper()
