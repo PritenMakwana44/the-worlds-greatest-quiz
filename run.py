@@ -84,7 +84,7 @@ def create_new_user():
                     raise ValueError
 
         except ValueError:
-            print(f"There must be no spaces in {username}")
+            print(f"There must be no spaces in: {username}")
             create_new_user()
         if username in username_list:
             print(f"'{username}' already exists")
