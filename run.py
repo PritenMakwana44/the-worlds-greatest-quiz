@@ -235,13 +235,13 @@ def question_answer(username):
         print(" ")
         print(new_question_list[count])
         count += 1
-        answer_input = input('Enter True or False: ').upper()
+        answer_input = input('Enter (T)rue or (F)alse: ').upper()
         print(" ")
         print("-----------------------------------------------------")
         print("Result:")
         print("-----------------------------------------------------")
         while True:
-            if answer_input.upper() == 'TRUE':
+            if answer_input.upper() == 'T':
                 if answer_cell.upper() == answer_input.upper():
                     print("Correct! - 10 points :)")
                     increment = int(login.cell(qa_username_cell.row,
@@ -253,7 +253,7 @@ def question_answer(username):
                 elif answer_cell.upper() != answer_input.upper():
                     print("Incorrect - 0 points :(")
                     break
-            elif answer_input.upper() == 'FALSE':
+            elif answer_input.upper() == 'F':
                 if answer_cell.upper() == answer_input.upper():
                     print("Correct! - 10 points :)")
                     increment = int(login.cell(qa_username_cell.row,
@@ -268,7 +268,7 @@ def question_answer(username):
 
             else:
                 print("Invalid Input")
-                answer_input = input('Enter True or False: ').upper()
+                answer_input = input('Enter (T)rue or (F)alse: ').upper()
 
         print(" ")
     get_points = int(login.cell(qa_username_cell.row,
