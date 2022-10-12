@@ -81,55 +81,83 @@ a Googlesheet is used to store data such as login username, password and points.
 * Tested each part of my code especially inputs by typing invalid charecters or no charecters etc... All is working correctly.
 * Checked Google spreadsheet to make sure data is updating correctly.
 * Tested from both Gitpod terminal and Heroku site. 
+* I shared my project with our communal Slack channel for project testing. I got some good feedback for improvements here.
 
 ## bugs
-
 ### Solved Bugs
+* Blank and space in username input bug
+    * When no input was added i.e just hitting enter on inputs it was being accepted.
+    * Also username was accepted if it had spaces.
+    * To fix I used a combination of isspace() and strip() see below for an example:
+        while len(username.strip()) == 0:
+                raise ValueError
+            for name in username:
+                if (name.isspace()) is True:
+                    raise ValueError
+
+* Error to use enumeration.
+    * Error produced when using:
+         for i in range(len(username_list)):
+        if username_list[i] == username:
+            password = input('Password: ')
+    * fix:
+        for i, user in enumerate(username_list):
+        if user == username:
+            print("Username Accepted...")
+            password = input('Password: ')
+            if password_list[i] == password:
+
 ### Remaining bugs
-
+* No remaining bugs.
 ## Validator Testing
-
+* Built into Code Institute template. Add-ons allow for error checking.
+* Pep8 website down for testing.
 ## Deployment
+* Instructions for deployment
+    * Fork or clone Repository which is stored on Github.
+    * Create Heroku account or login
+    * Create new app - enter name of app and assign region.
+    * If your using a creds.json file then go to Heroku settings and click "reveal config vars". 
+        * In key type CREDS and in value paste your whole creds.json file text.
+        * Again if you don't need to use creds.json file then skip to next step.
+    * Add Buildpack then click python, then click add Buildpack again and add node.js. 
+        * Make sure Python is first then node.js second.
+    * Go to Deploy section in Heroku.
+    * Click Github for deployment. Then click connect to Github. Login to Github to connect Heroku to Github.
+        * Then type in your repo name and hit search.
+        * Click connect to connect your project repo to Heroku.
+    * Scroll down to Enable Automatic deployments. This updates your Heroku everytime your Github repo is updated.
+        * e.g after you push any changes in github.
+
 
 ## Credits
-
-
-
-
-
-
-
-
-
-
-structure of login_register function:
-https://python-forum.io/thread-6106.html
-append to row:
-https://docs.gspread.org/en/latest/
-help with while loop:
-https://www.toolsqa.com/python/python-while-loop/
-
-help with line 60 bug:
-https://www.howtouselinux.com/post/get-last-element-of-a-list-in-python#:~:text=The%20best%20way%20to%20get,gets%20the%20second%20to%20last.
-
-random:
-https://www.geeksforgeeks.org/python-select-random-value-from-a-list/
-https://www.w3schools.com/python/module_random.asp
-
-codensed if code: 
-https://stackoverflow.com/questions/4915920/how-to-delete-an-item-in-a-list-if-it-exists
-
-sleep:
-
-https://www.freecodecamp.org/news/the-python-sleep-function-how-to-make-python-wait-a-few-seconds-before-continuing-with-example-commands/#:~:text=Make%20your%20time%20delay%20specific,after%20a%20slight%20delay.%22)
-
-while loop:
-https://www.geeksforgeeks.org/iterate-over-a-list-in-python/
-
-for loop:
-https://www.w3schools.com/python/python_for_loops.asp
-
-
-enumerate: 
-https://realpython.com/python-enumerate/
-https://www.geeksforgeeks.org/python-accessing-index-and-value-in-list/
+* Love Sandiches Code Institute project was used as a template for my readme file and to show me how to deploy to Heroku.
+* Structure of login_register function:
+    * https://python-forum.io/thread-6106.html
+* Append to row:
+    * https://docs.gspread.org/en/latest/
+* Help with while loop:
+    * https://www.toolsqa.com/python/python-while-loop/
+* Help with line 60 bug:
+    * https://www.howtouselinux.com/post/get-last-element-of-a-list-in-python#:~:text=The%20best%20way%20to%20get,gets%20the%20second%20to%20last.
+* Random:
+    * https://www.geeksforgeeks.org/python-select-random-value-from-a-list/
+    * https://www.w3schools.com/python/module_random.asp
+* Condensed if code: 
+    * https://stackoverflow.com/questions/4915920/how-to-delete-an-item-in-a-list-if-it-exists
+* Sleep:
+    * https://www.freecodecamp.org/news the-python-sleep-function-how-to-make-python-wait-a-few-seconds-before-continuing-with-example-commands/#:~:text=Make%20your%20time%20delay%20specific,after%20a%20slight%20delay.%22)
+* While loop:
+    * https://www.geeksforgeeks.org/iterate-over-a-list-in-python/
+* For loop:
+    * https://www.w3schools.com/python/python_for_loops.asp
+* Enumerate: 
+    * https://realpython.com/python-enumerate/
+    * https://www.geeksforgeeks.org/python-accessing-index-and-value-in-list/
+* General (Places to go in general for help even if Syntax isn't quite right):
+    * https://www.w3schools.com/
+    * https://www.Google.co.uk 
+    * https://www.youtube.com/
+* Markdown:
+    * https://www.markdownguide.org/cheat-sheet/
+    
