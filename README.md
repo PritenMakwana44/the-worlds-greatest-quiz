@@ -1,7 +1,7 @@
 # The Worlds Greatest Quiz
 The worlds greatest quiz is a true or false quiz with an account functionality to store points. 
 The game has been built with python and deployed with Heroku.
-The aim of the game is to get the most points of all time by continously playing the game.
+The aim of the game is to get the most points of all time by continuously playing the game.
 
 [Link to my code via Github pages](https://github.com/PritenMakwana44/the-worlds-greatest-quiz/)
 
@@ -10,10 +10,10 @@ The aim of the game is to get the most points of all time by continously playing
 ![Responsive](/readme-resources/images/res-app.png)
 
 ## How To Play
-First you will need to register or logon when starting the game. 
+First, you will need to register or log on when starting the game. 
 Then the quiz will start, it's as simple as typing "T" for true or "F" for false for each question.
 There are 10 questions and you get 10 points for right answers and 0 for wrong. 
-At the end of each game you will be asked if you want to play again.
+At the end of each game, you will be asked if you want to play again.
 The aim is to answer the most questions right to build your points so you have the most questions points of all time.
 
 ## Features

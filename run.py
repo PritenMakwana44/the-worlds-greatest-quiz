@@ -46,7 +46,7 @@ def start_program():
     sleep(1)
     print("-----------------------------------------------------")
     print("*--- Instructions ---*")
-    print("First Login or Regiester")
+    print("First Login or Register")
     print("To play the game type True or False on each question")
     print("Each time you play there will be new questions")
     print("Try beat the all time High score!")
