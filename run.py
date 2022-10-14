@@ -147,7 +147,7 @@ def logon():
                 print('Login Successful')
                 sleep(1)
                 points = points_list[i]
-                print(f"Points scored by {username} is: {points} Points")
+                print(f"Last Points scored by {username} is: {points} Points")
                 question_answer(username)
                 play_again(username)
                 break
@@ -174,6 +174,39 @@ def login_register():
         logon()
     else:
         login_register()
+
+
+def scoreboard():
+    """
+    Scoreboard function finds the highest score in points list
+    tells the user what the highest amount of points are to beat!
+    """
+    points_list = points_col
+    points_list.remove("points")
+    points_list = [int(i) for i in points_list]
+    points_list.sort()
+    print(f"All time highest Score: {points_list[-1]} Points")
+
+
+def play_again(username):
+    """
+    function for play again function.
+    End of the game if they would like to play again then option is there.
+    username parameter is used and linked into logon function
+    this pushes the username without need for input
+    """
+    p_a_username = username
+    question_play_again = input("Would you like to play again? y/n: ")
+
+    if question_play_again == "y":
+        question_answer(p_a_username)
+
+    elif question_play_again == "n":
+        print("Goodbye!")
+        exit()
+    else:
+        print("Invalid Input")
+        play_again(p_a_username)
 
 
 def question_answer(username):
@@ -280,39 +313,6 @@ def question_answer(username):
     play_again(username)
 
 
-def scoreboard():
-    """
-    Scoreboard function finds the highest score in points list
-    tells the user what the highest amount of points are to beat!
-    """
-    points_list = points_col
-    points_list.remove("points")
-    points_list = [int(i) for i in points_list]
-    points_list.sort()
-    print(f"All time highest Score: {points_list[-1]} Points")
-
-
-def play_again(username):
-    """
-    function for play again function.
-    End of the game if they would like to play again then option is there.
-    username parameter is used and linked into logon function
-    this pushes the username without need for input
-    """
-    p_a_username = username
-    question_play_again = input("Would you like to play again? y/n: ")
-
-    if question_play_again == "y":
-        question_answer(p_a_username)
-
-    elif question_play_again == "n":
-        print("Goodbye!")
-        exit()
-    else:
-        print("Invalid Input")
-        play_again(p_a_username)
-
-
 def main():
     """
     Main function activates all functions needed
@@ -322,7 +322,6 @@ def main():
     start_program()
     scoreboard()
     login_register()
-    scoreboard()
 
 
 main()
